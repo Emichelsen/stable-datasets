@@ -221,6 +221,13 @@ DATASET_CONFIGS: dict[str, DatasetConfig] = {
         builder_kwargs={"config_name": "mnist"},
     ),
     "fashionmnist": _gray("fashionmnist", "FashionMNIST", 10, mean=[0.2860], std=[0.3530]),
+    # Normalization statistics computed from the original training splits.
+    "kannadamnist": _gray(
+        "kannadamnist", "KannadaMNIST", 10, mean=[0.08229436], std=[0.24176926], builder_name="KannadaMNIST"
+    ),
+    "devanagari": _gray(
+        "devanagari", "Devanagari", 46, mean=[0.24000466], std=[0.38653011], builder_name="Devanagari"
+    ),
     "kmnist": _gray("kmnist", "KMNIST", 10, mean=[0.1918], std=[0.3483]),
     "pneumoniamnist": _gray(
         "pneumoniamnist",

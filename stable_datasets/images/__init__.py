@@ -13,6 +13,7 @@ from .cifar100_c import CIFAR100C
 from .clevrer import CLEVRER
 from .country211 import Country211
 from .cub200 import CUB200
+from .devanagari import Devanagari
 from .dsprites import DSprites
 from .dsprites_color import DSpritesColor
 from .dsprites_noise import DSpritesNoise
@@ -32,6 +33,7 @@ from .imagenet_1k import ImageNet1K
 from .imagenet_10 import Imagenette
 from .imagenet_100 import ImageNet100
 from .k_mnist import KMNIST
+from .kannada_mnist import KannadaMNIST
 from .linnaeus5 import Linnaeus5
 from .med_mnist import MedMNIST
 from .not_mnist import NotMNIST
@@ -61,6 +63,7 @@ __all__ = [
     "CLEVRER",
     "Country211",
     "CUB200",
+    "Devanagari",
     "DSprites",
     "DSpritesColor",
     "DSpritesNoise",
@@ -78,6 +81,7 @@ __all__ = [
     "ImageNet100",
     "Imagenette",
     "KMNIST",
+    "KannadaMNIST",
     "Linnaeus5",
     "MedMNIST",
     "NotMNIST",

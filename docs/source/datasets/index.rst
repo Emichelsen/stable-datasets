@@ -54,6 +54,8 @@ Available Datasets
    dtd
    fashion_mnist
    k_mnist
+   kannada_mnist
+   devanagari
    medmnist
    awa2
    beans
