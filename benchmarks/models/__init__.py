@@ -16,6 +16,7 @@ import stable_pretraining as spt
 import torch
 import torchmetrics
 from lightning.pytorch.callbacks import LearningRateMonitor
+from stable_pretraining import forward
 from stable_pretraining.callbacks.lidar import LiDAR
 from stable_pretraining.callbacks.rankme import RankMe
 from stable_pretraining.data import transforms
@@ -27,6 +28,20 @@ from benchmarks.models.vit import create_vit
 log = logging.getLogger(__name__)
 
 DEFAULT_EMBED_DIM = 512
+
+
+def resolve_forward(name: str):
+    """Prefer the current forward API, falling back to its legacy suffix."""
+    current = getattr(forward, name, None)
+    if callable(current):
+        return current
+    legacy = getattr(forward, f"{name}_forward", None)
+    if callable(legacy):
+        return legacy
+    raise AttributeError(
+        f"stable_pretraining.forward exposes neither callable {name!r} "
+        f"nor {name + '_forward'!r}; check the installed stable-pretraining version."
+    )
 
 
 # Backbone

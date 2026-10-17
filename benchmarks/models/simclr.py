@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import stable_pretraining as spt
-from stable_pretraining import forward
 from stable_pretraining.data import transforms
 
 from benchmarks.models import (
@@ -12,6 +11,7 @@ from benchmarks.models import (
     create_backbone,
     create_projector,
     get_embedding_dim,
+    resolve_forward,
     ssl_augmentation,
     val_transform,
 )
@@ -51,7 +51,7 @@ def build(cfg, ds_config) -> tuple[spt.Module, int]:
     module = spt.Module(
         backbone=backbone,
         projector=projector,
-        forward=forward.simclr,
+        forward=resolve_forward("simclr"),
         simclr_loss=spt.losses.NTXEntLoss(temperature=cfg.model.loss.temperature),
         optim=build_optim_config(cfg.model),
     )
