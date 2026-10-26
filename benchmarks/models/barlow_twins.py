@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import stable_pretraining as spt
+from stable_pretraining import forward
 from stable_pretraining.data import transforms
 from torch import nn
 
@@ -12,7 +13,6 @@ from benchmarks.models import (
     create_backbone,
     create_projector,
     get_embedding_dim,
-    resolve_forward,
     ssl_augmentation,
     val_transform,
 )
@@ -40,7 +40,7 @@ def build(cfg, ds_config) -> tuple[spt.Module, int]:
     module = spt.Module(
         backbone=backbone,
         projector=projector,
-        forward=resolve_forward("barlow_twins"),
+        forward=forward.barlow_twins,
         barlow_loss=barlow_loss,
         optim=build_optim_config(cfg.model),
     )
