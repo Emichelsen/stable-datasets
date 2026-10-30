@@ -20,11 +20,13 @@ from .cifar100 import CIFAR100
 from .cifar100_c import CIFAR100C
 from .cinic10 import CINIC10
 from .clevrer import CLEVRER
+from .cmu_faces import CMUFaces
 from .coil20 import COIL20
 from .coil100 import COIL100
 from .country211 import Country211
 from .cub200 import CUB200
 from .deep_weeds import DeepWeeds
+from .defungi import DeFungi
 from .dsprites import DSprites
 from .dsprites_color import DSpritesColor
 from .dsprites_noise import DSpritesNoise
@@ -115,11 +117,13 @@ __all__ = [
     "CIFAR100C",
     "CINIC10",
     "CLEVRER",
+    "CMUFaces",
     "COIL20",
     "COIL100",
     "Country211",
     "CUB200",
     "DeepWeeds",
+    "DeFungi",
     "DSprites",
     "DSpritesColor",
     "DSpritesNoise",

@@ -90,6 +90,8 @@ Available Datasets
    cub200
    stanford_dogs
    country211
+   cmu_faces
+   defungi
    galaxy10
    gtsrb
    hasy_v2
