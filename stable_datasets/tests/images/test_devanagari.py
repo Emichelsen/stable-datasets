@@ -78,7 +78,6 @@ def test_cache_roundtrip(tmp_path, monkeypatch):
     assert np.all(np.array(cached[0]["image"]) == 83)
 
 
-@pytest.mark.large
 def test_official_splits():
     ds = Devanagari()
     for split, size, per_class in [("train", 78200, 1700), ("test", 13800, 300)]:

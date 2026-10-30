@@ -11,6 +11,8 @@ A dataset pull request includes:
 3. **Docs**: a page at `docs/source/datasets/<dataset>.rst`, listed in `docs/source/datasets/index.rst`, with a teaser figure in `docs/source/datasets/teasers/`. `python generate_teaser.py --name <DatasetClass> --output <dataset>_teaser.png` makes one for image datasets; for other data, make the figure however suits it.
 4. **Results**: in the pull request description, a metric (e.g. train/val accuracy) from training or evaluating a model on the dataset, with supervised learning or any self-supervised method.
 
+Download from the dataset's original source when it's available. If an exact copy of the same files is also hosted elsewhere, add it as a fallback with `DownloadInfo(url=..., fallbacks=[...])`. Zenodo is a good place to look, and so is the Internet Archive's Wayback Machine, which often has a capture of the original URL: `https://web.archive.org/web/<timestamp>id_/<original URL>` serves the file exactly as the original server sent it. Fallbacks are tried in order only when the original can't be downloaded, so the dataset still loads while the original host is down. Set `checksum` too, so a fallback has to serve the same file.
+
 ## Tests
 
 Run the tests that CI runs, or a single dataset's tests:
@@ -22,7 +24,7 @@ pytest stable_datasets/tests/images/test_<dataset>.py
 
 Mark tests by what they need:
 
-- `@pytest.mark.large`: the test downloads more than about 2 GB. These never run in CI (runners have about 14 GB of disk), so the reviewer runs them by hand before merging.
+- `@pytest.mark.large`: the test downloads more than about 10 GB. These never run in CI, so the reviewer runs them by hand before merging.
 - `@pytest.mark.skip(reason="...")`: the data needs a login or a manual download (e.g. ImageNet or gated ISIC data), so the test can't run automatically anywhere.
 
 Unknown markers are an error, so a typo like `@pytest.mark.larg` fails right away instead of running a huge download. Declare any new marker in `pyproject.toml`.
@@ -36,7 +38,7 @@ On every pull request:
 - **pre-commit**: formatting and linting with ruff (including docstrings on dataset builders) and a 1 MB limit on added files.
 - **Testing**: the tests for the datasets you changed. If you change shared code (anything else under `stable_datasets/`, or `pyproject.toml`), the whole suite runs instead. Tests marked `large` are skipped. In the whole-suite run, a test whose dataset host can't be reached is reported as skipped rather than failed, since it says nothing about your change; for the datasets you changed, it fails, so re-run the check once the host is back.
 - **Docs**: the docs are built, and the check fails on any Sphinx warning.
-- **Dataset checklist**: each new builder has a test file and a docs page, and the page is listed in the index.
+- **Dataset checklist**: each new builder has a test file and a docs page, the page is listed in the index, and it shows a teaser figure from `docs/source/datasets/teasers/`.
 
 A maintainer has to approve CI runs for first-time contributors, so checks may not start right away.
 
